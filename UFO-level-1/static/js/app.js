@@ -23,3 +23,17 @@ function fill_table(data) {
     });
 
 }
+
+function filter_click() {
+    //take the datetime and use it as a filter
+    var date = d3.select('#datetime').property("value");
+    let filtered_data = tableData;
+
+    //if a date is entered use it to filter the data
+    if(date) {
+        // use filter to grab rows with matching datetime values
+        filtered_data = filtered_data.filter(row => row.datetime === date);
+    }
+    //use the fill_table function to fill the table with filtered data
+    fill_table(filtered_data);
+}
