@@ -37,3 +37,8 @@ function filter_click() {
     //use the fill_table function to fill the table with filtered data
     fill_table(filtered_data);
 }
+// create a event for a button click
+d3.selectAll("#filter-btn").on("click", handleClick);
+
+// build a table when the page is loaded
+buildTable(tableData);
