@@ -1,32 +1,32 @@
 // from data.js
-var tableData = data;
+const tableData = data;
 
 // define a variable for the table body
-var tbody = d3.selct("tbody");
+const tbody = d3.select("tbody");
 
 // create a function to fill the table
 function fill_table(data) {
     // clear any existing data if there is any
     tbody.html("");
     //use a for each to append all the rows from data.js
-    data.foreach((row) => {
+    data.forEach((row) => {
         // create a variable that will create a row
-        var table_row = tbody.append("tr");
+        const table_row = tbody.append("tr");
 
         // loop through each row to create the cells
-        Object.values(data).foreach((value) => {
-            cell = table_row.append("td");
+        Object.values(row).forEach((value) => {
+            let cell = table_row.append("td");
                 //fill the cell with the value
                 cell.text(value);
         }
-        );
+    );
     });
 
 }
 
 function filter_click() {
     //take the datetime and use it as a filter
-    var date = d3.select('#datetime').property("value");
+    const date = d3.select('#datetime').property("value");
     let filtered_data = tableData;
 
     //if a date is entered use it to filter the data
@@ -38,7 +38,7 @@ function filter_click() {
     fill_table(filtered_data);
 }
 // create a event for a button click
-d3.selectAll("#filter-btn").on("click", handleClick);
+d3.selectAll("#filter-btn").on("click", filter_click);
 
 // build a table when the page is loaded
-buildTable(tableData);
+fill_table(tableData);
